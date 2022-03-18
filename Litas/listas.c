@@ -150,10 +150,26 @@ PNodo OrdenarNIF(PNodo L)
     return P;
 }
 
+//Retorna uma lista sem os NIF maiores ou iguais ao nif
+//Recebe como argumento uma lista ordenada pelos NIF e
+//um int NIF, que é o valor a partir do qual é para eleminar
+PNodo RemoverNIFMaiores(PNodo L, int nif){
+    PNodo P = L;
+    while (P != NULL){
+        if (P->Elemento.NIF >= nif){
+            L = removerLista(P->Elemento, L);
+            P = P->Prox;
+        }   else{
+            P = P->Prox;
+        }
+    }
+    return L;
+}
+
 int main(void)
 {
     int aux = 0;
-    PNodo L = AddNElementos(100);
+    PNodo L = AddNElementos(25);
     //MostrarLista(L);
     printf("Tamanho da lista = %i\n", tamanhoLista(L));
     /* while (SomaPagamento(L, aux) == 0)
@@ -172,8 +188,9 @@ int main(void)
     // L = RemoverNIF(L, L->Prox->Elemento.NIF);
     L = OrdenarNIF(L);
     MostrarLista(L);
+    L = RemoverNIFMaiores(L, L->Prox->Prox->Elemento.NIF);
     printf("\n\n");
-    // MostrarLista(L);
+    MostrarLista(L);
     printf("Tamanho da lista = %i\n", tamanhoLista(L));
     return 0;
 }
