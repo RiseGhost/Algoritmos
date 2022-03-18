@@ -196,6 +196,24 @@ PNodo AcrescentaPagamento(PNodo L, float k1, float k2){
     return F;
 }
 
+//Retorna uma Lista em que os primeiros e ultimos K elementos têm um acrescimo de y1 e os restantes um acrescimo y2
+PNodo AcrescentaPagamentoInicioFim(PNodo L, float y1, float y2, int k){
+    PNodo P = L, F = criarLista();
+    int aux = 1;
+    while (P != NULL){
+        if (aux <= k | aux > k + (tamanhoLista(L) - 2*k)){
+            P->Elemento.Pagamento = P->Elemento.Pagamento + y1;
+            F = inserirListaFim(P->Elemento, F);
+        }   else{
+            P->Elemento.Pagamento = P->Elemento.Pagamento + y2;
+            F = inserirListaFim(P->Elemento, F);
+        }
+        P = P->Prox;
+        aux++;
+    }
+    return F;
+}
+
 int main(void)
 {
     int aux = 0;
@@ -220,7 +238,8 @@ int main(void)
     MostrarLista(L);
     //L = RemoverNIFMaiores(L, L->Prox->Prox->Elemento.NIF);
     printf("\n\n");
-    L = AcrescentaPagamento(L, 20, 95);
+    //L = AcrescentaPagamento(L, 20, 95);
+    L = AcrescentaPagamentoInicioFim(L, 10, 0, 5);
    // printf("O números de pagamentos maiores que 10 e menores que 320 são = %i\n", IntrevaloDePagamentos(L, 10, 320));
     MostrarLista(L);
     printf("Tamanho da lista = %i\n", tamanhoLista(L));
