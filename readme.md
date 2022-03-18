@@ -1,6 +1,6 @@
 # Algoritmos e estruturas de Dados
 - ## Sobre este repositório: 📁
-   Este repositório foi critado para o armazemamento de trabalho e fichas realizadas da disciplina de Algoritmos e Estruturas de Dados do 2º ano da licenciatura de Engenharia Informática 🖥️ na UBI. A principal lingua utilizada aqui será o C.
+   Este repositório foi criado para o armazemamento de trabalho e fichas realizadas na disciplina de Algoritmos e Estruturas de Dados do 2º ano da licenciatura de Engenharia Informática 🖥️ na UBI. A principal lingua utilizada aqui será o C.
 - ## Que tipo de exercícios poderei encontrar aqui? ❓
     Os exercícios encontrados aqui são:
     - Recursividade 🔄️;
