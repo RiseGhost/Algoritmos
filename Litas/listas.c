@@ -166,6 +166,18 @@ PNodo RemoverNIFMaiores(PNodo L, int nif){
     return L;
 }
 
+//Retorna o número de pagamentos maiores que o k1 e menores que o k2
+int IntrevaloDePagamentos(PNodo L, float k1, float k2){
+    PNodo P = L;
+    int incr = 0;
+    while (P != NULL){
+        if (P->Elemento.Pagamento > k1 & P->Elemento.Pagamento < k2)
+            incr++;
+        P = P->Prox;
+    }
+    return incr;
+}
+
 int main(void)
 {
     int aux = 0;
@@ -186,10 +198,11 @@ int main(void)
     // L = RemoverFatura(L, L->Prox->Elemento.NFatura);
     // L = RemoverNIF(L, L->Elemento.NIF);
     // L = RemoverNIF(L, L->Prox->Elemento.NIF);
-    L = OrdenarNIF(L);
+    //L = OrdenarNIF(L);
     MostrarLista(L);
-    L = RemoverNIFMaiores(L, L->Prox->Prox->Elemento.NIF);
+    //L = RemoverNIFMaiores(L, L->Prox->Prox->Elemento.NIF);
     printf("\n\n");
+   // printf("O números de pagamentos maiores que 10 e menores que 320 são = %i\n", IntrevaloDePagamentos(L, 10, 320));
     MostrarLista(L);
     printf("Tamanho da lista = %i\n", tamanhoLista(L));
     return 0;
