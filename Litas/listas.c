@@ -178,6 +178,24 @@ int IntrevaloDePagamentos(PNodo L, float k1, float k2){
     return incr;
 }
 
+//Retorna uma Lista com um acrescimo de k1 no pagamento da 1º metade da lista e com um acrescimo de k2 na 2º metade da lista
+PNodo AcrescentaPagamento(PNodo L, float k1, float k2){
+    PNodo P = L, F = criarLista();
+    int aux = 1;
+    while (P != NULL){
+        if (aux < tamanhoLista(L)/2){
+            P->Elemento.Pagamento = P->Elemento.Pagamento + k1;
+            F = inserirListaFim(P->Elemento, F);
+        }   else{
+            P->Elemento.Pagamento = P->Elemento.Pagamento + k2;
+            F = inserirListaFim(P->Elemento, F);
+        }
+        P = P->Prox;
+        aux++;
+    }
+    return F;
+}
+
 int main(void)
 {
     int aux = 0;
@@ -202,6 +220,7 @@ int main(void)
     MostrarLista(L);
     //L = RemoverNIFMaiores(L, L->Prox->Prox->Elemento.NIF);
     printf("\n\n");
+    L = AcrescentaPagamento(L, 20, 95);
    // printf("O números de pagamentos maiores que 10 e menores que 320 são = %i\n", IntrevaloDePagamentos(L, 10, 320));
     MostrarLista(L);
     printf("Tamanho da lista = %i\n", tamanhoLista(L));
