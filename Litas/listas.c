@@ -214,6 +214,18 @@ PNodo AcrescentaPagamentoInicioFim(PNodo L, float y1, float y2, int k){
     return F;
 }
 
+//Retorna o maior pagamento menor que um valor y
+float MaiorPagamentoMenor(PNodo L, float y){
+    PNodo P = L;
+    float maior = -9999999;
+    while (P != NULL){
+        if (P->Elemento.Pagamento > maior & P->Elemento.Pagamento < y)
+            maior = P->Elemento.Pagamento;
+        P = P->Prox;
+    }
+    return maior;
+}
+
 int main(void)
 {
     int aux = 0;
@@ -243,5 +255,6 @@ int main(void)
    // printf("O números de pagamentos maiores que 10 e menores que 320 são = %i\n", IntrevaloDePagamentos(L, 10, 320));
     MostrarLista(L);
     printf("Tamanho da lista = %i\n", tamanhoLista(L));
+    printf("Maior pagamento menor que 350= %f\n", MaiorPagamentoMenor(L, 350));
     return 0;
 }
