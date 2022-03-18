@@ -12,3 +12,6 @@
 
 <p>
 Espero que gostem. 😀
+
+- ## About this repository: 📁
+    This repository was created for the storage of work and files made from the Algorithms and Data Structures discipline of the 2º year of the Computer Enginnering degraa 🖥️ at UBI. The main language used here will be C.
