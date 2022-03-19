@@ -226,6 +226,18 @@ float MaiorPagamentoMenor(PNodo L, float y){
     return maior;
 }
 
+//Retorna uma lista sem o primeiro e ultimo elemento.
+PNodo RemoverPrimeiroUltimo(PNodo L){
+    PNodo P = L;
+    L = removerLista(P->Elemento, L);
+    while (P->Prox != NULL){
+        P = P->Prox;
+    }
+    L = removerLista(P->Elemento, L);
+    P = L;
+    return P;
+}
+
 int main(void)
 {
     int aux = 0;
@@ -251,10 +263,11 @@ int main(void)
     //L = RemoverNIFMaiores(L, L->Prox->Prox->Elemento.NIF);
     printf("\n\n");
     //L = AcrescentaPagamento(L, 20, 95);
-    L = AcrescentaPagamentoInicioFim(L, 10, 0, 5);
+   // L = AcrescentaPagamentoInicioFim(L, 10, 0, 5);
+   L = RemoverPrimeiroUltimo(L);
    // printf("O números de pagamentos maiores que 10 e menores que 320 são = %i\n", IntrevaloDePagamentos(L, 10, 320));
     MostrarLista(L);
     printf("Tamanho da lista = %i\n", tamanhoLista(L));
-    printf("Maior pagamento menor que 350= %f\n", MaiorPagamentoMenor(L, 350));
+    //printf("Maior pagamento menor que 350= %f\n", MaiorPagamentoMenor(L, 350));
     return 0;
 }
