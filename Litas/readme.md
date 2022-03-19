@@ -1,4 +1,4 @@
-# Como esta organizado esta diretoria❓:
+# Como está organizado esta diretoria❓:
 Existem dois ficheiros header (cabeçalho):
 
     aleatorio.h
