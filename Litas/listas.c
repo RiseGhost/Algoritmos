@@ -238,6 +238,16 @@ PNodo RemoverPrimeiroUltimo(PNodo L){
     return P;
 }
 
+//Retorna a Listade Trás para a Frente
+PNodo TrasParaFrente(PNodo L){
+    PNodo P = L, F = criarLista();
+    while (P != NULL){
+        F = inserirListaInicio(P->Elemento, F);
+        P = P->Prox;
+    }
+    return F;
+}
+
 int main(void)
 {
     int aux = 0;
