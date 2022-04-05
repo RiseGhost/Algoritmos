@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-
 #include "aleatorio.h"
 #include "operacaoPilha.h"
 #include "EADPilha.h"
@@ -9,6 +8,18 @@
 Comando para compilar:
 gcc operacaoPilha.o EADPilha.o aleatorio.o  pilhas.c -o pilhas
 */
+
+//Retorna um elemento com todos os campos a zero:
+INFOP zzero(){
+    INFOP zero;
+    zero.Data[0] = 0;
+    zero.Data[1] = 0;
+    zero.Data[2] = 0;
+    zero.NFatura = 0;
+    zero.NIF = 0;
+    zero.Pagamento = 0;
+    return zero; 
+}
 
 // Mostrar ao utilizador 
 void mostrarPilha (PNodoPilha S){
@@ -91,15 +102,33 @@ PNodoPilha TrocarPrimeiroUltimo(PNodoPilha S){
     return S;
 }
 
+//Retorna o elemento do fundo de uma pilha, se a pilha estiver fazia retorna,
+//Um elemento com todos os campos a zero
+INFOP FundoPilha(PNodoPilha S){
+    if (S != NULL)
+    {
+        PNodoPilha P = S;
+        while (P->Ant != NULL){
+            P = P->Ant;
+        }
+        return P->Elemento;
+    }   else{
+        return zzero();
+    }    
+}
+
 int main(void){
     PNodoPilha Pilha = criarPilhaAleatoria(10);
     int N;
     mostrarPilha(Pilha);
     printf("\n");
     PNodoPilha G = criarPilha();
-    mostrarElementoP(SegundoElementoTop(Pilha));
-    mostrarElementoP(DeterminarElemento(Pilha, 5));
-    mostrarElementoP(TerceiroDoFim(Pilha));
+    //mostrarElementoP(SegundoElementoTop(Pilha));
+    //mostrarElementoP(DeterminarElemento(Pilha, 5));
+    //mostrarElementoP(TerceiroDoFim(Pilha));
     //mostrarPilha(TrocarPrimeiroUltimo(Pilha));
+    //mostrarElementoP(FundoPilha(Pilha));
+
+
     return 0;
 }
