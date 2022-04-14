@@ -248,6 +248,35 @@ PNodo TrasParaFrente(PNodo L){
     return F;
 }
 
+//Retorna a Lista na coordernadea index:
+PNodo x(PNodo L, int index){
+    if (index == 1){
+        return L;
+    }   else{
+        return x(L->Prox, index - 1);
+    }
+}
+
+//Insere o elemento X na posição index da Lista L:
+void InserirElemtoLista(PNodo L, INFO X, int index){
+    if (index == 1)
+    {
+        PNodo elemet = criarNodo(X);
+        elemet->Prox = L;
+        L = elemet;
+    }   else if(tamanhoLista(L) < index || index < 1){
+        printf("Index inválido\n");
+    }   else {
+        PNodo before = L;
+        for (int i = 1; i < index; i++){
+            before = before->Prox;
+        }
+        PNodo element = criarNodo(X);
+        element->Prox = before;
+        L = (x(L, index - 1)->Prox = element);
+    }
+}
+
 int main(void)
 {
     int aux = 0;
@@ -274,10 +303,11 @@ int main(void)
     printf("\n\n");
     //L = AcrescentaPagamento(L, 20, 95);
    // L = AcrescentaPagamentoInicioFim(L, 10, 0, 5);
-   L = RemoverPrimeiroUltimo(L);
    // printf("O números de pagamentos maiores que 10 e menores que 320 são = %i\n", IntrevaloDePagamentos(L, 10, 320));
-    MostrarLista(L);
-    printf("Tamanho da lista = %i\n", tamanhoLista(L));
     //printf("Maior pagamento menor que 350= %f\n", MaiorPagamentoMenor(L, 350));
+    INFO X = criarElemento();
+    InserirElemtoLista(L, X, 25);
+    mostrarListaInicio(L);
+    printf("%i\n", tamanhoLista(L));
     return 0;
 }

@@ -8,7 +8,6 @@ typedef struct{
   float Pagamento;
 }INFOP;
 
-
 void mostrarElementoP (INFOP X);
 INFOP criarElementoP ();
 int compararElementosP (INFOP X, INFOP Y);

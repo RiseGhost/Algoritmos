@@ -102,6 +102,19 @@ PNodoPilha TrocarPrimeiroUltimo(PNodoPilha S){
     return S;
 }
 
+//Retorna a pilha invertida:
+PNodoPilha reverse (PNodoPilha S){
+    PNodoPilha Reverse = criarPilha();
+    PNodoPilha aux = S;
+    while (aux->Ant != NULL)
+    {
+        Reverse = push(topo(aux), Reverse);
+        aux = aux->Ant;
+    }
+    Reverse = push(topo(aux), Reverse);
+    return Reverse;
+}
+
 //Retorna o elemento do fundo de uma pilha, se a pilha estiver fazia retorna,
 //Um elemento com todos os campos a zero
 INFOP FundoPilha(PNodoPilha S){
@@ -129,6 +142,9 @@ int main(void){
     //mostrarPilha(TrocarPrimeiroUltimo(Pilha));
     //mostrarElementoP(FundoPilha(Pilha));
 
+    mostrarPilha(reverse(Pilha));
+    printf("\n");
+    mostrarPilha(Pilha);
 
     return 0;
 }
