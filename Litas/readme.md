@@ -9,7 +9,7 @@ Este dois ficheiros contém a declaração de funções que vão auxiliar na man
     aleatorio.c
     operacao.c
 
-Caso haja necessidade de alterar os ficheiros headers ou os ficheiros com contém o desenvolvimento das respetivas funções será necessário usar o comando:
+Caso haja necessidade de alterar os ficheiros headers ou os ficheiros que contém o desenvolvimento das respetivas funções será necessário usar o comando:
 
     gcc -c nome_do_ficheiro.c
 

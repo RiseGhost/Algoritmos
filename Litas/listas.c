@@ -12,7 +12,8 @@ PNodo AddNElementos(int N)
     PNodo L;
     L = criarLista();
     INFO f;
-    for (int i = 0; i < N; i++){
+    for (int i = 0; i < N; i++)
+    {
         f = criarElemento();
         L = inserirListaFim(f, L);
     }
@@ -32,12 +33,15 @@ int SomaPagamento(PNodo L, int x)
 {
     int soma = 0;
     PNodo P = L;
-    while (P != NULL){
-        if (P->Elemento.NIF == x){
+    while (P != NULL)
+    {
+        if (P->Elemento.NIF == x)
+        {
             soma = soma + soma;
             P = P->Prox;
         }
-        else{
+        else
+        {
             P = P->Prox;
         }
     }
@@ -49,12 +53,15 @@ int TotalPagamento(PNodo L, int n)
 {
     int pagamento = 0;
     PNodo P = L;
-    while (P != NULL){
-        if (P->Elemento.Pagamento > n){
+    while (P != NULL)
+    {
+        if (P->Elemento.Pagamento > n)
+        {
             pagamento = pagamento + 1;
             P = P->Prox;
         }
-        else{
+        else
+        {
             P = P->Prox;
         }
     }
@@ -66,12 +73,15 @@ float MaiorPagamento(PNodo L)
 {
     float maior = -999999;
     PNodo P = L;
-    while (P != NULL){
-        if (P->Elemento.Pagamento > maior){
+    while (P != NULL)
+    {
+        if (P->Elemento.Pagamento > maior)
+        {
             maior = P->Elemento.Pagamento;
             P = P->Prox;
         }
-        else{
+        else
+        {
             P = P->Prox;
         }
     }
@@ -83,12 +93,15 @@ float MenorPagamento(PNodo L, int K)
 {
     float menor = 999999;
     PNodo P = L;
-    while (P != NULL){
-        if (P->Elemento.Pagamento<menor & P->Elemento.Pagamento> K){
+    while (P != NULL)
+    {
+        if (P->Elemento.Pagamento<menor & P->Elemento.Pagamento> K)
+        {
             menor = P->Elemento.Pagamento;
             P = P->Prox;
         }
-        else{
+        else
+        {
             P = P->Prox;
         }
     }
@@ -99,11 +112,14 @@ float MenorPagamento(PNodo L, int K)
 PNodo RemoverFatura(PNodo L, int fatura)
 {
     PNodo P = L;
-    while (P != NULL){
-        if (fatura == P->Elemento.NFatura){
+    while (P != NULL)
+    {
+        if (fatura == P->Elemento.NFatura)
+        {
             L = removerLista(P->Elemento, L);
         }
-        else{
+        else
+        {
             P = P->Prox;
         }
     }
@@ -114,31 +130,37 @@ PNodo RemoverFatura(PNodo L, int fatura)
 PNodo RemoverNIF(PNodo L, int nif)
 {
     PNodo P = L;
-    while (P != NULL){
-        if (P->Elemento.NIF == nif){
+    while (P != NULL)
+    {
+        if (P->Elemento.NIF == nif)
+        {
             L = removerLista(P->Elemento, L);
         }
-        else{
+        else
+        {
             P = P->Prox;
         }
     }
     return L;
 }
 
-//Retorna a lista ordenada pelo NIF para o utilizador:
+// Retorna a lista ordenada pelo NIF para o utilizador:
 PNodo OrdenarNIF(PNodo L)
 {
     PNodo F = L;
     PNodo P = criarLista();
     int aux = -999999999, menor = 999999999;
-    for (int i = 0; i < tamanhoLista(L); i++){
-        while (F != NULL){
+    for (int i = 0; i < tamanhoLista(L); i++)
+    {
+        while (F != NULL)
+        {
             if (F->Elemento.NIF < menor && F->Elemento.NIF > aux)
                 menor = F->Elemento.NIF;
             F = F->Prox;
         }
         F = L;
-        while (F != NULL){
+        while (F != NULL)
+        {
             if (F->Elemento.NIF == menor)
                 P = inserirListaFim(F->Elemento, P);
             F = F->Prox;
@@ -150,10 +172,11 @@ PNodo OrdenarNIF(PNodo L)
     return P;
 }
 
-//Retorna uma lista sem os NIF maiores ou iguais ao nif
-//Recebe como argumento uma lista ordenada pelos NIF e
-//um int NIF, que é o valor a partir do qual é para eleminar
-PNodo RemoverNIFMaiores(PNodo L, int nif){
+// Retorna uma lista sem os NIF maiores ou iguais ao nif
+// Recebe como argumento uma lista ordenada pelos NIF e
+// um int NIF, que é o valor a partir do qual é para eleminar
+PNodo RemoverNIFMaiores(PNodo L, int nif)
+{
     PNodo P = L;
     while (P != NULL){
         if (P->Elemento.NIF >= nif){
@@ -166,8 +189,9 @@ PNodo RemoverNIFMaiores(PNodo L, int nif){
     return L;
 }
 
-//Retorna o número de pagamentos maiores que o k1 e menores que o k2
-int IntrevaloDePagamentos(PNodo L, float k1, float k2){
+// Retorna o número de pagamentos maiores que o k1 e menores que o k2
+int IntrevaloDePagamentos(PNodo L, float k1, float k2)
+{
     PNodo P = L;
     int incr = 0;
     while (P != NULL){
@@ -178,12 +202,13 @@ int IntrevaloDePagamentos(PNodo L, float k1, float k2){
     return incr;
 }
 
-//Retorna uma Lista com um acrescimo de k1 no pagamento da 1º metade da lista e com um acrescimo de k2 na 2º metade da lista
-PNodo AcrescentaPagamento(PNodo L, float k1, float k2){
+// Retorna uma Lista com um acrescimo de k1 no pagamento da 1º metade da lista e com um acrescimo de k2 na 2º metade da lista
+PNodo AcrescentaPagamento(PNodo L, float k1, float k2)
+{
     PNodo P = L, F = criarLista();
     int aux = 1;
     while (P != NULL){
-        if (aux < tamanhoLista(L)/2){
+        if (aux < tamanhoLista(L) / 2){
             P->Elemento.Pagamento = P->Elemento.Pagamento + k1;
             F = inserirListaFim(P->Elemento, F);
         }   else{
@@ -196,12 +221,13 @@ PNodo AcrescentaPagamento(PNodo L, float k1, float k2){
     return F;
 }
 
-//Retorna uma Lista em que os primeiros e ultimos K elementos têm um acrescimo de y1 e os restantes um acrescimo y2
-PNodo AcrescentaPagamentoInicioFim(PNodo L, float y1, float y2, int k){
+// Retorna uma Lista em que os primeiros e ultimos K elementos têm um acrescimo de y1 e os restantes um acrescimo y2
+PNodo AcrescentaPagamentoInicioFim(PNodo L, float y1, float y2, int k)
+{
     PNodo P = L, F = criarLista();
     int aux = 1;
     while (P != NULL){
-        if (aux <= k | aux > k + (tamanhoLista(L) - 2*k)){
+        if (aux <= k | aux > k + (tamanhoLista(L) - 2 * k)){
             P->Elemento.Pagamento = P->Elemento.Pagamento + y1;
             F = inserirListaFim(P->Elemento, F);
         }   else{
@@ -214,8 +240,9 @@ PNodo AcrescentaPagamentoInicioFim(PNodo L, float y1, float y2, int k){
     return F;
 }
 
-//Retorna o maior pagamento menor que um valor y
-float MaiorPagamentoMenor(PNodo L, float y){
+// Retorna o maior pagamento menor que um valor y
+float MaiorPagamentoMenor(PNodo L, float y)
+{
     PNodo P = L;
     float maior = -9999999;
     while (P != NULL){
@@ -226,8 +253,9 @@ float MaiorPagamentoMenor(PNodo L, float y){
     return maior;
 }
 
-//Retorna uma lista sem o primeiro e ultimo elemento.
-PNodo RemoverPrimeiroUltimo(PNodo L){
+// Retorna uma lista sem o primeiro e ultimo elemento.
+PNodo RemoverPrimeiroUltimo(PNodo L)
+{
     PNodo P = L;
     L = removerLista(P->Elemento, L);
     while (P->Prox != NULL){
@@ -238,8 +266,9 @@ PNodo RemoverPrimeiroUltimo(PNodo L){
     return P;
 }
 
-//Retorna a Listade Trás para a Frente
-PNodo TrasParaFrente(PNodo L){
+// Retorna a Listade Trás para a Frente
+PNodo TrasParaFrente(PNodo L)
+{
     PNodo P = L, F = criarLista();
     while (P != NULL){
         F = inserirListaInicio(P->Elemento, F);
@@ -248,40 +277,47 @@ PNodo TrasParaFrente(PNodo L){
     return F;
 }
 
-//Retorna a Lista na coordernadea index:
-PNodo x(PNodo L, int index){
-    if (index == 1){
+// Retorna a Lista na coordernadea index:
+PNodo x(PNodo L, int index)
+{
+    if (index == 1)
         return L;
-    }   else{
+    else
         return x(L->Prox, index - 1);
-    }
+    
 }
 
-//Insere o elemento X na posição index da Lista L:
-void InserirElemtoLista(PNodo L, INFO X, int index){
-    if (index == 1)
-    {
-        PNodo elemet = criarNodo(X);
-        elemet->Prox = L;
-        L = elemet;
-    }   else if(tamanhoLista(L) < index || index < 1){
-        printf("Index inválido\n");
-    }   else {
-        PNodo before = L;
-        for (int i = 1; i < index; i++){
-            before = before->Prox;
-        }
+//Retorna uma lista com e elemeto X adiciona no posição index:
+PNodo InserirElemtoLista(PNodo L, INFO X, int index)
+{
+    PNodo P;
+    if (index == 2){
+        P = criarNodo(X);
+        P->Prox = L->Prox;
+        L->Prox = P;
+    }   else
+        InserirElemtoLista(L->Prox ,X ,index - 1);
+    return L;
+}
+
+//Retorna a Lista com o elemento X adicionar no Penultimo lugar da lista:
+PNodo Penultimo(PNodo L, INFO X)
+{
+    if (L->Prox->Prox == NULL){
         PNodo element = criarNodo(X);
-        element->Prox = before;
-        L = (x(L, index - 1)->Prox = element);
+        element->Prox = L->Prox;
+        L->Prox = element;
+    }   else{
+        Penultimo(L->Prox, X);
     }
+    return L;
 }
 
 int main(void)
 {
     int aux = 0;
     PNodo L = AddNElementos(25);
-    //MostrarLista(L);
+    // MostrarLista(L);
     printf("Tamanho da lista = %i\n", tamanhoLista(L));
     /* while (SomaPagamento(L, aux) == 0)
      {
@@ -297,16 +333,17 @@ int main(void)
     // L = RemoverFatura(L, L->Prox->Elemento.NFatura);
     // L = RemoverNIF(L, L->Elemento.NIF);
     // L = RemoverNIF(L, L->Prox->Elemento.NIF);
-    //L = OrdenarNIF(L);
+    // L = OrdenarNIF(L);
     MostrarLista(L);
-    //L = RemoverNIFMaiores(L, L->Prox->Prox->Elemento.NIF);
+    // L = RemoverNIFMaiores(L, L->Prox->Prox->Elemento.NIF);
     printf("\n\n");
-    //L = AcrescentaPagamento(L, 20, 95);
-   // L = AcrescentaPagamentoInicioFim(L, 10, 0, 5);
-   // printf("O números de pagamentos maiores que 10 e menores que 320 são = %i\n", IntrevaloDePagamentos(L, 10, 320));
-    //printf("Maior pagamento menor que 350= %f\n", MaiorPagamentoMenor(L, 350));
+    // L = AcrescentaPagamento(L, 20, 95);
+    // L = AcrescentaPagamentoInicioFim(L, 10, 0, 5);
+    // printf("O números de pagamentos maiores que 10 e menores que 320 são = %i\n", IntrevaloDePagamentos(L, 10, 320));
+    // printf("Maior pagamento menor que 350= %f\n", MaiorPagamentoMenor(L, 350));
     INFO X = criarElemento();
-    InserirElemtoLista(L, X, 25);
+    // InserirElemtoLista(L, X, 25);
+    L = InserirElemtoLista(L,X, 25);
     mostrarListaInicio(L);
     printf("%i\n", tamanhoLista(L));
     return 0;
