@@ -30,27 +30,20 @@ void GravarArvore(PNodoAB Acacia, char *ficheiro){
     }
 }
 
+//Retorna o número de elemento com NIF impares:
 int ElementosImpares(PNodoAB A){
-    int numEsq, numDir;
-    if (A == NULL)
-        return 0;
-    if (A->Elemento.NIF % 2 == 0)
-    {
-        numEsq = numeroNodosAB(A->Esquerda) - 1;
-    }   else{
-        numEsq = numeroNodosAB(A->Esquerda);
+    if (A != NULL){
+        if (A->Elemento.NIF % 2 != 0){
+            return 1 + ElementosImpares(A->Direita) + ElementosImpares(A->Esquerda);
+        }   else{
+            return ElementosImpares(A->Direita) + ElementosImpares(A->Esquerda);
+        }
     }
-    if (A->Elemento.NIF % 2 == 0)
-    {
-        numDir = numeroNodosAB(A->Direita) - 1;
-    }   else{
-        numDir = numeroNodosAB(A->Direita);
-    }
-    return 1 + numEsq + numDir;
+    return 0;
 }
 
 int main(void){
-    PNodoAB T = gerarElemento(20);
+    PNodoAB T = gerarElemento(10);
     mostrarEmOrdemAB(T);
     printf("\n número de nodos = %i\n", numeroNodosAB(T));
     printf("Número de NIF impares = %i\n", ElementosImpares(T));
