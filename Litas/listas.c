@@ -28,7 +28,7 @@ void MostrarLista(PNodo L)
     // mostrarListaFimRec(L);
 }
 
-// DEvolve a soma dos Pagamentos com NIF igual a x
+// Devolve a soma dos Pagamentos com NIF igual a x
 int SomaPagamento(PNodo L, int x)
 {
     int soma = 0;
@@ -313,6 +313,14 @@ PNodo Penultimo(PNodo L, INFO X)
     return L;
 }
 
+float SomaPositiva(PNodo L){
+    if (L != NULL){
+        return L->Elemento.Pagamento + SomaPositiva(L->Prox);
+    }   else{
+        return 0;
+    }
+}
+
 int main(void)
 {
     int aux = 0;
@@ -341,10 +349,9 @@ int main(void)
     // L = AcrescentaPagamentoInicioFim(L, 10, 0, 5);
     // printf("O números de pagamentos maiores que 10 e menores que 320 são = %i\n", IntrevaloDePagamentos(L, 10, 320));
     // printf("Maior pagamento menor que 350= %f\n", MaiorPagamentoMenor(L, 350));
-    INFO X = criarElemento();
     // InserirElemtoLista(L, X, 25);
-    L = InserirElemtoLista(L,X, 25);
     mostrarListaInicio(L);
     printf("%i\n", tamanhoLista(L));
+    printf("\nSoma dos pagamentos = %f\n", SomaPositiva(L));
     return 0;
 }
