@@ -42,11 +42,22 @@ int ElementosImpares(PNodoAB A){
     return 0;
 }
 
+//Retorna o Número de filhos de um árvore:
+int Filhos(PNodoAB Acacia){
+    if (Acacia != NULL){
+       if (Acacia->Esquerda == NULL & Acacia->Esquerda == NULL){
+            return 1;
+       }
+            return Filhos(Acacia->Direita) + Filhos(Acacia->Esquerda);
+    }
+    return 0;
+}
+
 int main(void){
     PNodoAB T = gerarElemento(10);
     mostrarEmOrdemAB(T);
     printf("\n número de nodos = %i\n", numeroNodosAB(T));
     printf("Número de NIF impares = %i\n", ElementosImpares(T));
-    GravarArvore(T, "teste.txt");
+    printf("\nFilhos = %i\n", Filhos(T));
     return 0;
 }
