@@ -321,6 +321,21 @@ float SomaPositiva(PNodo L){
     }
 }
 
+PNodo RemoveN(PNodo L){
+    if (L != NULL)
+    {
+        if (L->Elemento.NIF > 1000){
+            L = L->Prox->Prox;
+            libertarNodo(L->Prox);
+            return L;
+        }   else{
+            RemoveN(L->Prox);
+        }
+    }   else{
+        return L;
+    }
+}
+
 int main(void)
 {
     int aux = 0;
@@ -350,7 +365,7 @@ int main(void)
     // printf("O números de pagamentos maiores que 10 e menores que 320 são = %i\n", IntrevaloDePagamentos(L, 10, 320));
     // printf("Maior pagamento menor que 350= %f\n", MaiorPagamentoMenor(L, 350));
     // InserirElemtoLista(L, X, 25);
-    mostrarListaInicio(L);
+    mostrarListaInicio(RemoveN(L));
     printf("%i\n", tamanhoLista(L));
     printf("\nSoma dos pagamentos = %f\n", SomaPositiva(L));
     return 0;

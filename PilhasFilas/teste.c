@@ -75,6 +75,7 @@ INFOP convertINFOP(INFOF X){
 }
 
 //Retorna uma Fila contendo todos os elementos de um Pilha pela ordem contrária:
+//Não altera a Pilha P.
 PNodoFila PilhaToFila(PNodoPilha P){
     int tamanho = Plength(P);
     INFOP array[tamanho];
@@ -92,6 +93,7 @@ PNodoFila PilhaToFila(PNodoPilha P){
 }
 
 //Retorna uma Pilha com todos os elementos impares de um Fila mas mantendo a ordem da fila:
+//Não alterar a Fila F.
 PNodoPilha FilatoPilha(PNodoFila F){
     int tamanho = Flength(F);
     
@@ -111,12 +113,28 @@ PNodoPilha FilatoPilha(PNodoFila F){
     return P;
 }
 
+PNodoPilha FilatoPilha1(PNodoFila F){
+    int tamanho = Flength(F);
+    PNodoPilha P = criarPilha();
+    INFOF array[tamanho];
+    for (int i = 0; i < tamanho; i++){
+        array[i] = F->Elemento;
+        F = F->Prox;
+    }
+
+    for (int i = 0; i < tamanho; i++){
+        P = push(convertINFOP(array[i]), P);
+    }
+    
+    return P;
+}
+
 int main(void){
     PNodoPilha P = AddElementP(10);
     PNodoFila F = AddElementF(10);
     MostrarFilha(F);
     printf("Tamanho da filha é: %i\n", Flength(F)); 
-    MostrarPilha(FilatoPilha(F));
+    MostrarPilha(FilatoPilha1(F));
     printf("Tamanho da pilha é: %i\n", Plength(FilatoPilha(F)));
     return 0;
 }

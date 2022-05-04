@@ -116,7 +116,7 @@ int main(void){
     PNodoFila F = AddElement(10);
     MostrarFila(F);
     printf("\ntamanho -> %i\n\n", length(F));
-    MostrarFila(PrimeiroUltimo(F));
+    MostrarFila(Reverse(F));
     printf("\ntamanho -> %i\n\n", length(F));
     printf("\ntamanho -> %i\n\n", length(PrimeiroUltimo(F)));
     return 0;
