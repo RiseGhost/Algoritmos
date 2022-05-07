@@ -158,14 +158,32 @@ PNodoFila reverse(PNodoFila F){
     }
 }
 
+//Retorna a Fila invertida de trás para a frente, mas não altera a fila original:
+PNodoFila Reverse(PNodoFila F){
+    int size = length(F);
+    if(size == 0){
+        return F;
+    }   else{
+        INFOF array[size];
+        PNodoFila B = criarFila();
+        for (int i = 0; i < size; i++){
+            array[i] = F->Elemento;
+            F = F->Prox;
+        }
+        for (int i = size - 1; i >= 0; i--){
+            B = juntar(array[i], B);
+        }
+        return B;
+    }
+}
 
 int main(void){
     PNodoFila Fila = AddElemento(15);
     mostrar(Fila);
     printf("size -> %i\n", length(Fila));
-    reverse(Fila);
+    PNodoFila B = Reverse(Fila);
     printf("\n+++++++++++++\n\n");
-    mostrar(Fila);
-    printf("size -> %i\n", length(Fila));
+    mostrar(B);
+    printf("size -> %i\n", length(B));
     return 0;
 }
