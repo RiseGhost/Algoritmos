@@ -52,7 +52,7 @@ PNodoFila Remover2(PNodoFila F){
     PNodoFila B = criarFila();
     int size = length(F);
     for(int i = 0; i < size; i++){
-        if(i != 2){
+        if(i != 1){
             B = juntar(F->Elemento, B);
         }
         F = F->Prox;
@@ -64,7 +64,7 @@ PNodoFila Remover2(PNodoFila F){
 //Se o utilizador colcoar um valor de Q > length(Fila) ela retorna a fila original
 PNodoFila removeN(PNodoFila F, int Q){
     if (F != NULL){
-        if (Q != 0){
+        if (Q != 1){
             removeN(F->Prox, Q - 1);
         }else{
             F->Prox = F->Prox->Prox;
@@ -197,7 +197,7 @@ int main(void){
     PNodoFila Fila = AddElemento(15);
     mostrar(Fila);
     printf("size -> %i\n", length(Fila));
-    trade(Fila);
+    removeN(Fila, 3);
     printf("\n+++++++++++++\n\n");
     mostrar(Fila);
     printf("size -> %i\n", length(Fila));
