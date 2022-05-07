@@ -177,13 +177,29 @@ PNodoFila Reverse(PNodoFila F){
     }
 }
 
+//Retorna a Fila com o primerio e ultimo elementos trocados, mas não altera a fila original:
+PNodoFila trade(PNodoFila F){
+    int size = length(F);
+    INFOF first = F->Elemento;
+    INFOF last = LastElement(F);
+    PNodoFila B = criarFila();
+    B = juntar(last, B);
+    F = F->Prox;
+    for (int i = 0; i < size - 2; i++){
+        B = juntar(F->Elemento, B);
+        F = F->Prox;
+    }
+    B = juntar(first, B);
+    return B;
+}
+
 int main(void){
     PNodoFila Fila = AddElemento(15);
     mostrar(Fila);
     printf("size -> %i\n", length(Fila));
-    PNodoFila B = Reverse(Fila);
+    trade(Fila);
     printf("\n+++++++++++++\n\n");
-    mostrar(B);
-    printf("size -> %i\n", length(B));
+    mostrar(Fila);
+    printf("size -> %i\n", length(Fila));
     return 0;
 }
