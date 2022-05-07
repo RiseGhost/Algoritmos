@@ -4,120 +4,129 @@
 
 /*
 Comando para compilar:
-gcc aleatorio.o operacaoFila.o EADFila.o fila.c -o fila 
+gcc aleatorio.o operacaoFila.o EADFila.o fila.c -o fila
 */
 
-//Retorna uma fila com N elementos do tipo INFOF gerados aleatóriamente:
-PNodoFila AddElement (int N){
+/*
+    Vou considerar que as filas começam da posição zero:
+*/
+
+//Retorna uma Fila com N elementos gerados aleatóriamente:
+PNodoFila AddElemento(int N){
     PNodoFila F = criarFila();
-    for (int i = 0; i < N; i++){
+    for(int i = 0; i < N; i++){
         INFOF X = criarElementoF();
         F = juntar(X, F);
     }
     return F;
 }
 
-//Mostrar todos os elementos de uma Fila:
-void MostrarFila(PNodoFila F){
+//Mostra todos os elementos de uma Fila F:
+void mostrar(PNodoFila F){
     if (F != NULL){
         mostrarElementoF(F->Elemento);
-        MostrarFila(F->Prox);
+        mostrar(F->Prox);
     }
 }
 
-//Retorna o tamanho da lista
+//Retorna o tamanho de uma Fila:
 int length(PNodoFila F){
     int count = 0;
-    while (F != NULL){
+    while(F != NULL){
         F = F->Prox;
         count++;
     }
     return count;
 }
 
-//Devolve um Fila sem o segundo elemento
-PNodoFila Remove2Element(PNodoFila F){
-    PNodoFila R = criarFila();
-    int tamanho = length(F);
-    for (int i = 1; i <= tamanho; i++){
-        if (i != 2)
-            R = juntar(F->Elemento, R);
-        F = F->Prox;
-    }
-    return R;
-}
-
-//Retorna uma Fila sem o elemento da posição N:
-//Se o N > tamanho da lista ele devolve a lista F normal:
-PNodoFila RemoveElement(PNodoFila F, int N){
-    PNodoFila R = criarFila();
-    int tamanho = length(F);
-    if (N > tamanho){
-        return F;
-    }   else{
-        for (int i = 1; i <= tamanho; i++){
-            if (i != N)
-                R = juntar(F->Elemento, R);
-            F = F->Prox;   
-        }
-        return R;
-    }
-}
-
-//Retorna uma Fila sem o ultima elemento:
-//Atenção ele altera a Fila original.
-PNodoFila RemoverUltimo(PNodoFila F){
-    if (F->Prox->Prox == NULL){
-        F->Prox = NULL;
-    }   else{
-        RemoverUltimo(F->Prox);
+//Remove o segundo elemento de uma Fila, mas altera a Fila original:
+PNodoFila remover2(PNodoFila F){
+    if(F->Prox->Prox != NULL && F->Prox->Prox->Prox != NULL){
+        F->Prox->Prox = F->Prox->Prox->Prox;
     }
     return F;
 }
 
-//Retorna a lista de trás para a frente:
-PNodoFila Revese(PNodoFila F){
-    PNodoFila R = criarFila();
-    int tamanho = length(F);
-    INFOF array[tamanho];
-    for (int i = 0; i < tamanho; i++){
-        array[i] = F->Elemento;
+//Remove o segundo elemento de uma Fila, mas não altera a Fila original:
+PNodoFila Remover2(PNodoFila F){
+    PNodoFila B = criarFila();
+    int size = length(F);
+    for(int i = 0; i < size; i++){
+        if(i != 2){
+            B = juntar(F->Elemento, B);
+        }
         F = F->Prox;
     }
-    for (int i = 1; i <= tamanho; i++){
-        R = juntar(array[tamanho - i],R);
-    }
-    return R;
+    return B;
 }
 
-//Retorna uma Fila com o Primeiro e ultimo elementos trocados:
-PNodoFila PrimeiroUltimo(PNodoFila F){
-    PNodoFila R = criarFila();
-    int tamanho = length(F);
-    INFOF array[tamanho];
-    INFOF first = F->Elemento;
-    for (int i = 1; i <= tamanho; i++){
-        array[i-1] = F->Elemento;
+//Remove o elemento que esta no posição N da Fila, mas altera a fila original:
+//Se o utilizador colcoar um valor de Q > length(Fila) ela retorna a fila original
+PNodoFila removeN(PNodoFila F, int Q){
+    if (F != NULL){
+        if (Q != 0){
+            removeN(F->Prox, Q - 1);
+        }else{
+            F->Prox = F->Prox->Prox;
+            removeN(F->Prox, Q - 1);
+        }
+    }
+    return F;
+}
+
+//Remove o elemento que esta na posição N da Fila, mas não altera a fila original:
+PNodoFila RemoveN(PNodoFila F, int Q){
+    PNodoFila B = criarFila();
+    int size = length(F);
+    for (int i = 0; i < size; i++){
+        if (i != Q){
+            B = juntar(F->Elemento, B);
+        }
         F = F->Prox;
     }
-    INFOF last = array[tamanho - 1];
-    for (int i = 0; i < tamanho; i++){
-        if (i == 0)
-            R = juntar(last, R);
-        else if(i == tamanho - 1)
-            R = juntar(first, R);
-        else
-            R = juntar(array[i], R);
+    return B;
+}
+
+//Remove o útlimo elemento da Fila, mas altera a fila original:
+PNodoFila removeLast(PNodoFila F){
+    while (F->Prox->Prox != NULL){
+        F = F->Prox;
     }
-    return R;
+    F->Prox = NULL;
+    return F;
+}
+
+//Remove o último elemento da Fila, mas não altera a fila original:
+PNodoFila RemoveLast(PNodoFila F){
+    PNodoFila B = criarFila();
+    while (F->Prox != NULL)
+    {
+        B = juntar(F->Elemento, B);
+        F = F->Prox;
+    }
+    return B;
+}
+
+//Remove o antepenultimo elemento da Fila, mas altera a fila original:
+PNodoFila removeAntePenultimo(PNodoFila F){
+    int size = length(F);
+    for (int i = 0; i < size - 1; i++){
+        if (i == size - 3){
+            F->Prox = F->Prox->Prox;
+        }   else{
+            F = F->Prox;
+        }
+    }
+    return F;
 }
 
 int main(void){
-    PNodoFila F = AddElement(10);
-    MostrarFila(F);
-    printf("\ntamanho -> %i\n\n", length(F));
-    MostrarFila(Reverse(F));
-    printf("\ntamanho -> %i\n\n", length(F));
-    printf("\ntamanho -> %i\n\n", length(PrimeiroUltimo(F)));
+    PNodoFila Fila = AddElemento(15);
+    mostrar(Fila);
+    printf("size -> %i\n", length(Fila));
+    PNodoFila B = RemoveLast(Fila);
+    printf("\n+++++++++++++\n\n");
+    mostrar(B);
+    printf("size -> %i\n", length(B));
     return 0;
 }
