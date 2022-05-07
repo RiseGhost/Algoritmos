@@ -99,8 +99,7 @@ PNodoFila removeLast(PNodoFila F){
 //Remove o último elemento da Fila, mas não altera a fila original:
 PNodoFila RemoveLast(PNodoFila F){
     PNodoFila B = criarFila();
-    while (F->Prox != NULL)
-    {
+    while (F->Prox != NULL){
         B = juntar(F->Elemento, B);
         F = F->Prox;
     }
@@ -133,13 +132,32 @@ PNodoFila RemoveAntePenultimo(PNodoFila F){
     return B;
 }
 
+//Retorna a Fila invertida de trás para a frente, mas não altera a fila original:
+PNodoFila reverse(PNodoFila F){
+    int size = length(F);
+    if(size == 0){
+        return F;
+    }   else{
+        INFOF array[size];
+        for (int i = 0; i < size; i++){
+            array[i] = F->Elemento;
+            F = F->Prox;
+        }
+        PNodoFila B = criarFila();
+        for (int i = size - 1; i >= 0; i--){
+            B = juntar(array[i], B);
+        }
+        return B;
+    }
+}
+
 int main(void){
     PNodoFila Fila = AddElemento(15);
     mostrar(Fila);
     printf("size -> %i\n", length(Fila));
-    PNodoFila B = RemoveAntePenultimo(Fila);
+    reverse(Fila);
     printf("\n+++++++++++++\n\n");
-    mostrar(B);
-    printf("size -> %i\n", length(B));
+    mostrar(Fila);
+    printf("size -> %i\n", length(Fila));
     return 0;
 }
