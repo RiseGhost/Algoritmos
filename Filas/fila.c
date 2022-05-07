@@ -120,11 +120,23 @@ PNodoFila removeAntePenultimo(PNodoFila F){
     return F;
 }
 
+PNodoFila RemoveAntePenultimo(PNodoFila F){
+    PNodoFila B = criarFila();
+    int size = length(F);
+    for (int i = 0; i < size; i++){
+        if(i != size - 3){
+            B = juntar(F->Elemento, B);
+        }
+        F = F->Prox;
+    }
+    return B;
+}
+
 int main(void){
     PNodoFila Fila = AddElemento(15);
     mostrar(Fila);
     printf("size -> %i\n", length(Fila));
-    PNodoFila B = RemoveLast(Fila);
+    PNodoFila B = RemoveAntePenultimo(Fila);
     printf("\n+++++++++++++\n\n");
     mostrar(B);
     printf("size -> %i\n", length(B));
