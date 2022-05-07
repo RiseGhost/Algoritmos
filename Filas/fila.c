@@ -120,6 +120,7 @@ PNodoFila removeAntePenultimo(PNodoFila F){
     return F;
 }
 
+//Remove o antepenultimo elemento da Fila, mas não altera a fila original:
 PNodoFila RemoveAntePenultimo(PNodoFila F){
     PNodoFila B = criarFila();
     int size = length(F);
