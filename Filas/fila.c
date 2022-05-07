@@ -106,6 +106,15 @@ PNodoFila RemoveLast(PNodoFila F){
     return B;
 }
 
+//Retorna o ultimo elemento da Fila, mas não altera a fila original:
+INFOF LastElement(PNodoFila F){
+    if (F->Prox != NULL){
+        return LastElement(F->Prox);
+    }   else{
+        return F->Elemento;
+    }
+}
+
 //Remove o antepenultimo elemento da Fila, mas altera a fila original:
 PNodoFila removeAntePenultimo(PNodoFila F){
     int size = length(F);
@@ -132,24 +141,23 @@ PNodoFila RemoveAntePenultimo(PNodoFila F){
     return B;
 }
 
-//Retorna a Fila invertida de trás para a frente, mas não altera a fila original:
+//Retorna a Fila invertida de trás para a frente, mas destroi a Fila original:
 PNodoFila reverse(PNodoFila F){
     int size = length(F);
     if(size == 0){
         return F;
     }   else{
-        INFOF array[size];
-        for (int i = 0; i < size; i++){
-            array[i] = F->Elemento;
-            F = F->Prox;
-        }
         PNodoFila B = criarFila();
-        for (int i = size - 1; i >= 0; i--){
-            B = juntar(array[i], B);
+        for (int i = 0; i < size - 1; i++)
+        {
+            B = juntar(LastElement(F), B);
+            removeLast(F);
         }
+        B = juntar(LastElement(F), B);
         return B;
     }
 }
+
 
 int main(void){
     PNodoFila Fila = AddElemento(15);
