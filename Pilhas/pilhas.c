@@ -21,7 +21,7 @@ INFOP zzero(){
     return zero; 
 }
 
-// Mostrar ao utilizador 
+// Mostrar ao utilizador
 void mostrarPilha (PNodoPilha S){
   PNodoPilha P = S;
   while (P != NULL){

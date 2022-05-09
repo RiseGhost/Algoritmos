@@ -11,6 +11,11 @@ gcc aleatorio.o operacaoFila.o EADFila.o fila.c -o fila
     Vou considerar que as filas começam da posição zero:
 */
 
+PNodoFila pri(PNodoFila F){
+    F = F->Prox;
+    return F;
+}
+
 //Retorna uma Fila com N elementos gerados aleatóriamente:
 PNodoFila AddElemento(int N){
     PNodoFila F = criarFila();
@@ -39,37 +44,14 @@ int length(PNodoFila F){
     return count;
 }
 
-//Remove o segundo elemento de uma Fila, mas altera a Fila original:
-PNodoFila remover2(PNodoFila F){
-    if(F->Prox->Prox != NULL && F->Prox->Prox->Prox != NULL){
-        F->Prox->Prox = F->Prox->Prox->Prox;
-    }
-    return F;
-}
-
-//Remove o segundo elemento de uma Fila, mas não altera a Fila original:
-PNodoFila Remover2(PNodoFila F){
-    PNodoFila B = criarFila();
-    int size = length(F);
-    for(int i = 0; i < size; i++){
-        if(i != 1){
-            B = juntar(F->Elemento, B);
-        }
-        F = F->Prox;
-    }
-    return B;
-}
-
-//Remove o elemento que esta no posição N da Fila, mas altera a fila original:
-//Se o utilizador colcoar um valor de Q > length(Fila) ela retorna a fila original
+//Remove o segundo elemento de uma Fila, mas altera a fila orginal:
 PNodoFila removeN(PNodoFila F, int Q){
     if (F != NULL){
-        if (Q != 1){
-            removeN(F->Prox, Q - 1);
-        }else{
-            F->Prox = F->Prox->Prox;
-            removeN(F->Prox, Q - 1);
+        if (Q > - 1){
+            F = F->Prox;
+            return removeN(F, Q - 1);
         }
+        removeN(F->Prox, Q - 1);
     }
     return F;
 }
@@ -193,11 +175,24 @@ PNodoFila trade(PNodoFila F){
     return B;
 }
 
+PNodoFila Impar(PNodoFila F){
+    PNodoFila B = criarFila();
+    int i = 1;
+    while (F != NULL){
+        if(i % 2 != 0){
+            B = juntar(F->Elemento, B);
+        }
+        F = F->Prox;
+        i++;
+    }
+    return B;
+}
+
 int main(void){
     PNodoFila Fila = AddElemento(15);
     mostrar(Fila);
     printf("size -> %i\n", length(Fila));
-    removeN(Fila, 3);
+    Fila = Impar(Fila);
     printf("\n+++++++++++++\n\n");
     mostrar(Fila);
     printf("size -> %i\n", length(Fila));
