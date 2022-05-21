@@ -98,6 +98,19 @@ int Intrevalo(PNodoAB T, int A, int B){
     }
 }
 
+//Retorna o número de valores menores que A e maiores que B:
+int IntrevaloOposto(PNodoAB T, int A, int B){
+    if(T != NULL){
+        if(T->Elemento.NFatura >= A && T->Elemento.NFatura <= B){
+            return IntrevaloOposto(T->Esquerda, A, B) + IntrevaloOposto(T->Direita, A, B);
+        }   else{
+            return 1 + IntrevaloOposto(T->Esquerda, A, B) + IntrevaloOposto(T->Direita, A, B);
+        }
+    }   else{
+        return 0;
+    }
+}
+
 int main(void){
     PNodoAB T = Add(10);
     imprimir(T);
@@ -106,6 +119,7 @@ int main(void){
     printf("A menor NFatura é: %d\n", MenorNFatura(T));
     printf("Existe %d valores maiores que 1450\n", MaiorqueN(T, 1450));
     //printf("%d\n", PesquisaElemento(T, T->Direita->Elemento.NFatura)->Elemento.NFatura);
-    printf("Existe %i elementos entre 1000 e 1780.\n", Intrevalo(T, 1000, 1780));
+    printf("Existe %i elementos entre 1250 e 1780.\n", Intrevalo(T, 1250, 1780));
+    printf("Existe %i elementos fora do intrevalo 1250 a 1780.\n", IntrevaloOposto(T, 1250, 1780));
     return 0;
 }
