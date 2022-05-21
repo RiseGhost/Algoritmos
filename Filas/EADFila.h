@@ -3,7 +3,7 @@
 #define EADFILA_H
 
 struct NodoFila {
-  INFOF   Elemento;
+  INFOF Elemento;
   struct NodoFila *Prox;
 };
 

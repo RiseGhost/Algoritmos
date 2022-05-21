@@ -13,7 +13,7 @@ PNodoFila criarNodoFila (INFOF X){
   return P;
 }
 
-PNodoFila libertarNodoFila (PNodoFila P){ 
+PNodoFila libertarNodoFila (PNodoFila P){
   P->Prox = NULL;
   free(P);
   P = NULL;
